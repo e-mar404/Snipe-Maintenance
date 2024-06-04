@@ -10,6 +10,22 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+func main() {
+  e := echo.New()
+  e.Use(middleware.Logger())
+
+  e.Static("/css", "css")
+
+  page := NewPageData()
+  e.Renderer = NewTemplate()
+
+  e.GET("/", func(c echo.Context) error {
+    return c.Render(http.StatusOK, "index", page)
+  })
+
+  e.Logger.Fatal(e.Start(":42069"))
+}
+
 type Templates struct {
   templates * template.Template
 }
@@ -30,22 +46,6 @@ type PageData struct {
 
 func NewPageData() PageData {
   return PageData {
-    MaintenanceTableData: snipe.NewMaintenanceTableData(),  
+    MaintenanceTableData: snipe.CreateMaintenanceTableData(),  
   }
-}
-
-func main() {
-  e := echo.New()
-  e.Use(middleware.Logger())
-
-  e.Static("/css", "css")
-
-  page := NewPageData()
-  e.Renderer = NewTemplate()
-
-  e.GET("/", func(c echo.Context) error {
-    return c.Render(http.StatusOK, "index", page)
-  })
-
-  e.Logger.Fatal(e.Start(":42069"))
 }
