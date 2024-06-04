@@ -25,3 +25,14 @@ func TestEnvKey (t *testing.T) {
     t.Fatal("no api key in env file")
   }
 }
+
+func TestURL (t *testing.T) {
+  godotenv.Load("../../.env")
+
+  URL := os.Getenv("URL")
+  exists := len(URL) > 0
+
+  if !exists {
+    t.Fatal("there is no url in env file")
+  }
+}
