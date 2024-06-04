@@ -26,15 +26,15 @@
       <th>Start Date</th>
       <th>Competion Date</th>
     </tr>
-    {{ range .Devices }}
+    {{ range .Assets }}
       <tr>
-        {{ template "DeviceRow" . }}
+        {{ template "AssetRow" . }}
       </tr>
     {{ end }}
   </table>
 {{ end }}
 
-{{ block "DeviceRow" . }}
+{{ block "AssetRow" . }}
   <td>{{ .Name }}</td>
   <td>{{ .AssetTag }}</td>
   <td>{{ .SerialNumber }}</td>
