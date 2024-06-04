@@ -5,10 +5,42 @@
     <title>Beta Snipe Maintenance</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/index.css" rel="stylesheet">
   </head>
 
   <body>
-    <p> hello </p>
+    {{ template "MaintenanceTable" .MaintenanceTableData }}
   </body>
 </html>
+{{ end }}
+
+{{ block "MaintenanceTable" . }}
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Asset Tag</th>
+      <th>Serial Number</th>
+      <th>Company</th>
+      <th>Title</th>
+      <th>Notes</th>
+      <th>Start Date</th>
+      <th>Competion Date</th>
+    </tr>
+    {{ range .Devices }}
+      <tr>
+        {{ template "DeviceRow" . }}
+      </tr>
+    {{ end }}
+  </table>
+{{ end }}
+
+{{ block "DeviceRow" . }}
+  <td>{{ .Name }}</td>
+  <td>{{ .AssetTag }}</td>
+  <td>{{ .SerialNumber }}</td>
+  <td>{{ .Company }}</td>
+  <td>{{ .Title }}</td>
+  <td>{{ .Notes }}</td>
+  <td>{{ .StartDate }}</td>
+  <td>{{ .CompletionDate }}</td>
 {{ end }}
