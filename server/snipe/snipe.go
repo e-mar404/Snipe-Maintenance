@@ -1,6 +1,6 @@
 package snipe
 
-func GetInRepairAssets() []Asset {
+func InRepairAssets() []Asset {
   return []Asset {
     NewAsset(
       1234,

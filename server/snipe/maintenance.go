@@ -6,6 +6,6 @@ type MaintenanceTableData struct {
 
 func CreateMaintenanceTableData() MaintenanceTableData {
   return MaintenanceTableData {
-    Assets: GetInRepairAssets(),
+    Assets: InRepairAssets(),
   }
 }
